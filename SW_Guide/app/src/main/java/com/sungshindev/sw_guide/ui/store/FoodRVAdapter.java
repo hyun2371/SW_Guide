@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.sungshindev.sw_guide.R;
 import com.sungshindev.sw_guide.data.Food;
 
@@ -55,7 +57,8 @@ public class FoodRVAdapter extends RecyclerView.Adapter<FoodRVAdapter.ViewHolder
         viewHolder.title.setText(foods.get(pos).getTitle());
         viewHolder.time.setText(foods.get(pos).getTime());
         viewHolder.category.setText(foods.get(pos).getCategory());
-        viewHolder.imageView.setImageResource(foods.get(pos).getImage_path());
+        Glide.with(holder.itemView).load(foods.get(pos).getImage_path()).into(holder.imageView);
+
     }
 
     @Override

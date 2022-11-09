@@ -4,7 +4,16 @@ public class Food {
     String title;
     String category;
     String time;
-    int image_path;
+    String image_path;
+    int fid;
+
+    public int getFid(){
+        return fid;
+    }
+
+    public void setFid(){
+        this.fid = fid;
+    }
 
     public String getTitle(){
         return title;
@@ -27,15 +36,24 @@ public class Food {
         this.time = time;
     }
 
-    public int getImage_path(){
+    public String getImage_path(){
         return image_path;
     }
 
-    public void setImage_path(int image_path){
+    public void setImage_path(String image_path){
         this.image_path = image_path;
     }
 
-    public Food(String title, String category, String time, int image_path){
+    public Food(){
+        fid = 0;
+        title="default";
+        category ="default";
+        time = "default";
+        image_path="default";
+    }
+
+    public Food(int fid, String title, String category, String time, String image_path){
+        this.fid = fid;
         this.title = title;
         this.category = category;
         this.time = time;

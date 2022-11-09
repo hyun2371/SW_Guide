@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.sungshindev.sw_guide.R;
 import com.sungshindev.sw_guide.data.Drink;
 import com.sungshindev.sw_guide.data.Food;
@@ -56,7 +57,7 @@ public class DrinkRVAdapter extends RecyclerView.Adapter<DrinkRVAdapter.ViewHold
         int pos = holder.getAdapterPosition();
         viewHolder.title.setText(drinks.get(pos).getTitle());
         viewHolder.time.setText(drinks.get(pos).getTime());
-        viewHolder.imageView.setImageResource(drinks.get(pos).getImage_path());
+        Glide.with(holder.itemView).load(drinks.get(pos).getImage_path()).into(holder.imageView);
     }
 
     @Override

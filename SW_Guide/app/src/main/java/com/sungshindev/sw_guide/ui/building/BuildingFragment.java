@@ -6,33 +6,63 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.sungshindev.sw_guide.R;
 import com.sungshindev.sw_guide.data.Building;
+import com.sungshindev.sw_guide.data.Food;
 
 import java.util.ArrayList;
 
 public class BuildingFragment extends Fragment {
     private RecyclerView rv;
     private BuildingRVAdapter adapter;
+
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_building,container,false);
         ArrayList<Building> buildings = new ArrayList();
 
-        buildings.add(new Building("수정관",R.drawable.building_sujung));
-        buildings.add(new Building("성신관",R.drawable.building_sungshin));
-        buildings.add(new Building("난향관",R.drawable.building_nanhyang));
-        buildings.add(new Building("중앙도서관",R.drawable.building_library));
-        buildings.add(new Building("학생회관",R.drawable.building_library));
-        buildings.add(new Building("성미료",R.drawable.building_library));
         rv = rootView.findViewById(R.id.building_recyclerview);
-        adapter = new BuildingRVAdapter(getContext(),buildings);
+
 
         rv.setLayoutManager(new GridLayoutManager(getContext(),2));
+
+
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("Building");
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                buildings.clear();
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    Building building = snapshot.getValue(Building.class);
+                    buildings.add(building);
+                }
+                adapter.notifyDataSetChanged();;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        adapter = new BuildingRVAdapter(getContext(),buildings);
         rv.setAdapter(adapter);
 
         adapter.setOnItemClickListener(new BuildingRVAdapter.OnItemClickListener() {

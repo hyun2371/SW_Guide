@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.sungshindev.sw_guide.R;
 import com.sungshindev.sw_guide.data.Building;
 
@@ -51,7 +52,7 @@ public class BuildingRVAdapter extends RecyclerView.Adapter<BuildingRVAdapter.Vi
         ViewHolder viewHolder = (ViewHolder)holder;
         int pos = holder.getAdapterPosition();
         viewHolder.textView.setText(buildings.get(pos).getTitle());
-        viewHolder.imageView.setImageResource(buildings.get(pos).getImage_path());
+        Glide.with(holder.itemView).load(buildings.get(pos).getImage_path()).into(holder.imageView);
     }
 
 
