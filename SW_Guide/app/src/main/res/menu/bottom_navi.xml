@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_home"
+        android:title="홈"
+        android:icon="@drawable/ic_navi_home"/>
+    <item
+        android:id="@+id/menu_question"
+        android:title="QnA"
+        android:icon="@drawable/ic_navi_question"/>
+    <item
+        android:id="@+id/menu_building"
+        android:title="건물"
+        android:icon="@drawable/ic_navi_building"/>
+    <item
+        android:id="@+id/menu_store"
+        android:title="맛집"
+        android:icon="@drawable/ic_navi_store"/>
+</menu>
