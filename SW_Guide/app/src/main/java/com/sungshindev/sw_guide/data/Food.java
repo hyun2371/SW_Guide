@@ -5,6 +5,8 @@ public class Food {
     String category;
     String time;
     String image_path;
+    int lon;
+    int lat;
     int fid;
 
     public int getFid(){
@@ -40,12 +42,17 @@ public class Food {
         return image_path;
     }
 
+    public int getLon(){return lon;}
+    public int getLat(){return lat;}
+
     public void setImage_path(String image_path){
         this.image_path = image_path;
     }
 
     public Food(){
         fid = 0;
+        lat=0;
+        lon=0;
         title="default";
         category ="default";
         time = "default";

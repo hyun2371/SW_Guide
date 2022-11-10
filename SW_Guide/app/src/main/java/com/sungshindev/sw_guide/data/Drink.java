@@ -6,36 +6,27 @@ public class Drink {
     String title;
     String time;
     String image_path;
+    int lon;
+    int lat;
 
     public int getDrink_id() {
         return drink_id;
     }
 
-    public void setDrink_id(int drink_id) {
-        this.drink_id = drink_id;
-    }
-
     public String getTitle(){
         return title;
     }
-    public void setTitle(String title){
-        this.title = title;
-    }
-
 
     public String getTime(){
         return time;
-    }
-    public void setTime(String time){
-        this.time = time;
     }
 
     public String getImage_path(){
         return image_path;
     }
-    public void setImage_path(String image_path){
-        this.image_path = image_path;
-    }
+
+    public int getLon(){return lon;}
+    public int getLat(){return lat;}
 
     public Drink(int drink_id, String title,  String time, String image_path){
         this.drink_id = drink_id;
@@ -46,6 +37,8 @@ public class Drink {
 
     public Drink(){
         drink_id=0;
+        lon = 0;
+        lat = 0;
         title = "default";
         time = "default";
         image_path = "default";
