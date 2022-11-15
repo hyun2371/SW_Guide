@@ -20,9 +20,10 @@ public class FoodRVAdapter extends RecyclerView.Adapter<FoodRVAdapter.ViewHolder
 
     ArrayList<Food> foods;
     Context context;
+    private int fid;
 
     public interface OnItemClickListener{
-        void onItemClicked(int position);
+        void onItemClicked(int position,int fid);
     }
 
     private OnItemClickListener itemClickListener;
@@ -43,7 +44,8 @@ public class FoodRVAdapter extends RecyclerView.Adapter<FoodRVAdapter.ViewHolder
             @Override
             public void onClick(View view) {
                 int pos = viewHolder.getAdapterPosition();
-                itemClickListener.onItemClicked(pos);
+                fid=foods.get(pos).getFid();
+                itemClickListener.onItemClicked(pos, fid);
             }
         });
 

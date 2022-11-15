@@ -6,6 +6,9 @@ public class Drink {
     String title;
     String time;
     String image_path;
+    String recommend;
+    String num;
+    String category;
     int lon;
     int lat;
 
@@ -28,6 +31,11 @@ public class Drink {
     public int getLon(){return lon;}
     public int getLat(){return lat;}
 
+    public String getNum(){return num;}
+    public String getRecommend(){return recommend;}
+
+    public String getCategory(){return category;}
+
     public Drink(int drink_id, String title,  String time, String image_path){
         this.drink_id = drink_id;
         this.title = title;
@@ -42,5 +50,8 @@ public class Drink {
         title = "default";
         time = "default";
         image_path = "default";
+        recommend = "default";
+        num="default";
+        category="default";
     }
 }

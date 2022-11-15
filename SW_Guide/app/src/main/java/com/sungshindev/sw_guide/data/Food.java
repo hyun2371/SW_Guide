@@ -5,6 +5,8 @@ public class Food {
     String category;
     String time;
     String image_path;
+    String num;
+    String recommend;
     int lon;
     int lat;
     int fid;
@@ -13,41 +15,27 @@ public class Food {
         return fid;
     }
 
-    public void setFid(){
-        this.fid = fid;
-    }
+    public String getNum(){return num;}
 
     public String getTitle(){
         return title;
-    }
-    public void setTitle(String title){
-        this.title = title;
     }
 
     public String getCategory(){
         return category;
     }
-    public void setCategory(String category){
-        this.category = category;
-    }
+
 
     public String getTime(){
         return time;
-    }
-    public void setTime(String time){
-        this.time = time;
     }
 
     public String getImage_path(){
         return image_path;
     }
 
-    public int getLon(){return lon;}
-    public int getLat(){return lat;}
+    public String getRecommend(){return recommend;}
 
-    public void setImage_path(String image_path){
-        this.image_path = image_path;
-    }
 
     public Food(){
         fid = 0;
@@ -57,13 +45,17 @@ public class Food {
         category ="default";
         time = "default";
         image_path="default";
+        num = "default";
+        recommend="default";
     }
 
-    public Food(int fid, String title, String category, String time, String image_path){
+    public Food(int fid, String title, String category, String time, String image_path, String num,String recommend){
         this.fid = fid;
         this.title = title;
         this.category = category;
         this.time = time;
         this.image_path = image_path;
+        this.num = num;
+        this.recommend=recommend;
     }
 }

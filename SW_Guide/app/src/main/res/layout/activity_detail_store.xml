@@ -109,6 +109,7 @@
                 android:textStyle="bold"
                 android:text="영업시간 "/>
             <TextView
+                android:id="@+id/store_time_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -146,6 +147,7 @@
                 android:textStyle="bold"
                 android:text="추천 메뉴"/>
             <TextView
+                android:id="@+id/store_recommend_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"

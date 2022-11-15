@@ -2,6 +2,7 @@ package com.sungshindev.sw_guide.ui.store;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,7 @@ public class FoodFragment extends Fragment {
     private RecyclerView rv;
     private FoodRVAdapter adapter;
 
-    private ArrayList<Food> foods;
+    ArrayList<Food> foods;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
@@ -65,11 +66,13 @@ public class FoodFragment extends Fragment {
 
         adapter.setOnItemClickListener(new FoodRVAdapter.OnItemClickListener() {
             @Override
-            public void onItemClicked(int position) {
+            public void onItemClicked(int position,int fid) {
                 Intent intent = new Intent(getActivity(), StoreDetailActivity.class);
+                intent.putExtra("fid",fid);
                 startActivity(intent);
             }
         });
+
 
         return rootView;
     }
