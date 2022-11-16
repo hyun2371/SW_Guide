@@ -68,7 +68,8 @@ public class FoodFragment extends Fragment {
             @Override
             public void onItemClicked(int position,int fid) {
                 Intent intent = new Intent(getActivity(), StoreDetailActivity.class);
-                intent.putExtra("fid",fid);
+                intent.putExtra("id",fid);
+                intent.putExtra("kind",1);
                 startActivity(intent);
             }
         });

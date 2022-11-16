@@ -65,8 +65,9 @@ public class DrinkFragment extends Fragment {
 
         adapter.setOnItemClickListener(new DrinkRVAdapter.OnItemClickListener() {
             @Override
-            public void onItemClicked(int position) {
+            public void onItemClicked(int position, int d_id) {
                 Intent intent = new Intent(getActivity(), StoreDetailActivity.class);
+                intent.putExtra("id",d_id);
                 startActivity(intent);
             }
         });

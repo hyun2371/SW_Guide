@@ -46,8 +46,8 @@ public class QuestionRVAdapter extends RecyclerView.Adapter<QuestionRVAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        QuestionRVAdapter.ViewHolder viewHolder = (QuestionRVAdapter.ViewHolder)holder;
+    public void onBindViewHolder(@NonNull QuestionRVAdapter.ViewHolder holder, int position) {
+        ViewHolder viewHolder = (QuestionRVAdapter.ViewHolder)holder;
         int pos = holder.getAdapterPosition();
         viewHolder.button.setText(questions.get(pos).getQ());
 

@@ -37,20 +37,33 @@ public class StoreDetailActivity extends AppCompatActivity {
     TextView recommendText;
     String num;
     String title;
-    String category;
     String time;
     String recommend;
+    String category;
     boolean isBookmarked=false;
     private DatabaseReference reference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        String ref; //어느 테이블 참조할지
+        String child;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_store);
 
         Intent intent = getIntent();
-        int fid = intent.getIntExtra("fid", 0);
-        Log.d("ff",String.valueOf(fid));
+        int id = intent.getIntExtra("id", 0);
+        int kind = intent.getIntExtra("kind",0);
+
+        //drink vs food
+        if (kind==1){
+            ref="Food";
+            child = String.format("Food_0%s",id);
+        } else {
+            ref="Drink";
+            child = String.format("Drink_0%s",id);
+        }
+
+        Log.d("ff",String.valueOf(id));
         backBtn = findViewById(R.id.store_back_btn);
         bookmarkBtn = findViewById(R.id.store_star_btn);
         callBtn = findViewById(R.id.store_call_btn);
@@ -60,8 +73,8 @@ public class StoreDetailActivity extends AppCompatActivity {
         timeText = findViewById(R.id.store_time_tv);
         recommendText = findViewById(R.id.store_recommend_tv);
 
-        String child = String.format("Food_0%s",fid);
-        readData(child);
+
+        readData(ref,child);
 
         backBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -75,10 +88,12 @@ public class StoreDetailActivity extends AppCompatActivity {
                 if (!isBookmarked){
                     isBookmarked=true;
                     bookmarkBtn.setImageResource(R.drawable.ic_star_clicked);
+                    Toast.makeText(getApplicationContext(),"북마크에 추가하였습니다.",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     isBookmarked=false;
                     bookmarkBtn.setImageResource(R.drawable.ic_star_unclicked);
+                    Toast.makeText(getApplicationContext(),"북마크를 취소하였습니다.",Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -94,8 +109,8 @@ public class StoreDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void readData(String child) {
-        reference = FirebaseDatabase.getInstance().getReference("Food");
+    private void readData(String ref,String child) {
+        reference = FirebaseDatabase.getInstance().getReference(ref);
         reference.child(child).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {

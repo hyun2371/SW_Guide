@@ -21,9 +21,10 @@ public class DrinkRVAdapter extends RecyclerView.Adapter<DrinkRVAdapter.ViewHold
 
     ArrayList<Drink> drinks;
     Context context;
+    private int d_id;
 
     public interface OnItemClickListener{
-        void onItemClicked(int position);
+        void onItemClicked(int position,int d_id);
     }
 
     private OnItemClickListener itemClickListener;
@@ -44,7 +45,8 @@ public class DrinkRVAdapter extends RecyclerView.Adapter<DrinkRVAdapter.ViewHold
             @Override
             public void onClick(View view) {
                 int pos = viewHolder.getAdapterPosition();
-                itemClickListener.onItemClicked(pos);
+                d_id=drinks.get(pos).getDrink_id();
+                itemClickListener.onItemClicked(pos,d_id);
             }
         });
 

@@ -21,6 +21,7 @@ public class FoodRVAdapter extends RecyclerView.Adapter<FoodRVAdapter.ViewHolder
     ArrayList<Food> foods;
     Context context;
     private int fid;
+    private int kind;
 
     public interface OnItemClickListener{
         void onItemClicked(int position,int fid);
