@@ -2,15 +2,15 @@ package com.sungshindev.sw_guide.data;
 
 public class Drink {
 
-    int drink_id;
-    String title;
-    String time;
-    String image_path;
-    String recommend;
-    String num;
     String category;
-    int lon;
+    int drink_id;
+    String image_path;
     int lat;
+    int lon;
+    String num;
+    String recommend;
+    String time;
+    String title;
 
     public int getDrink_id() {
         return drink_id;
@@ -36,11 +36,17 @@ public class Drink {
 
     public String getCategory(){return category;}
 
-    public Drink(int drink_id, String title,  String time, String image_path){
+    public Drink(int drink_id, String title,  String time, String num, String category,
+                 String image_path,int lon, int lat, String recommend){
         this.drink_id = drink_id;
         this.title = title;
         this.time = time;
+        this.num =num;
+        this.category = category;
         this.image_path = image_path;
+        this.lon = lon;
+        this.lat = lat;
+        this.recommend = recommend;
     }
 
     public Drink(){

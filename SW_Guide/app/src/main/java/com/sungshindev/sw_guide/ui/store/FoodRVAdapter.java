@@ -58,7 +58,7 @@ public class FoodRVAdapter extends RecyclerView.Adapter<FoodRVAdapter.ViewHolder
         ViewHolder viewHolder = holder;
         int pos = holder.getAdapterPosition();
         viewHolder.title.setText(foods.get(pos).getTitle());
-        viewHolder.time.setText(foods.get(pos).getTime());
+        viewHolder.time.setText(foods.get(pos).getTime().replace("\\n", "\n"));
         viewHolder.category.setText(foods.get(pos).getCategory());
         Glide.with(holder.itemView).load(foods.get(pos).getImage_path()).into(holder.imageView);
 

@@ -29,6 +29,7 @@
         <entry key="app/src/main/res/layout/fragment_question.xml" value="0.20754716981132076" />
         <entry key="app/src/main/res/layout/fragment_store.xml" value="0.23324275362318841" />
         <entry key="app/src/main/res/layout/item_building.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_home_tip.xml" value="0.35963855421686747" />
         <entry key="app/src/main/res/layout/item_question.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_question_recycler.xml" value="0.13677536231884058" />
         <entry key="app/src/main/res/layout/item_store_drink.xml" value="0.12454710144927536" />

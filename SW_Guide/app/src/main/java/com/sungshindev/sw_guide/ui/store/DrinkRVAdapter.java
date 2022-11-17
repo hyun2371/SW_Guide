@@ -58,7 +58,7 @@ public class DrinkRVAdapter extends RecyclerView.Adapter<DrinkRVAdapter.ViewHold
         ViewHolder viewHolder = holder;
         int pos = holder.getAdapterPosition();
         viewHolder.title.setText(drinks.get(pos).getTitle());
-        viewHolder.time.setText(drinks.get(pos).getTime());
+        viewHolder.time.setText(drinks.get(pos).getTime().replace("\\n", "\n"));
         Glide.with(holder.itemView).load(drinks.get(pos).getImage_path()).into(holder.imageView);
     }
 

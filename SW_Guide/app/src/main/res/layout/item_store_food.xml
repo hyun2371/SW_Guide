@@ -3,7 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="160dp"
     android:layout_height="130dp"
-    android:layout_marginBottom="10dp"
+    android:layout_marginBottom="20dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="12dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
         android:id="@+id/item_food_iv"
@@ -12,7 +14,7 @@
         android:src="@drawable/store_item_iv"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:alpha="0.3"
+        android:alpha="0.4"
         android:background="@drawable/item_store_background"
         android:elevation="10dp"/>
     <TextView
@@ -21,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
+        android:textStyle="bold"
         android:text="언앨리셰프"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>

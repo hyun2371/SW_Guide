@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="30dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/item_home_banner"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="350dp"
+        android:layout_height="300dp"
+        android:src="@drawable/building_nanhyang"/>
+    <TextView
+        android:id="@+id/item_home_explain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이미지 배너에 대한 설명"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/item_home_banner"
+        app:layout_constraintStart_toStartOf="@id/item_home_banner"
+        app:layout_constraintEnd_toEndOf="@id/item_home_banner"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

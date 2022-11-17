@@ -57,15 +57,20 @@ public class StoreDetailActivity extends AppCompatActivity {
         //drink vs food
         if (kind==1){
             ref="Food";
-            child = String.format("Food_0%s",id);
+            if (id<10)
+                child = String.format("Food_0%s",id);
+            else
+                child = String.format("Food_%s",id);
         } else {
             ref="Drink";
-            child = String.format("Drink_0%s",id);
+            if (id<10)
+                child = String.format("Drink_0%s",id);
+            else
+                child = String.format("Drink_%s",id);
         }
 
         Log.d("ff",String.valueOf(id));
         backBtn = findViewById(R.id.store_back_btn);
-        bookmarkBtn = findViewById(R.id.store_star_btn);
         callBtn = findViewById(R.id.store_call_btn);
         numText = findViewById(R.id.store_num_tv);
         titleText = findViewById(R.id.store_title_tv);
@@ -82,22 +87,7 @@ public class StoreDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
-        bookmarkBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                if (!isBookmarked){
-                    isBookmarked=true;
-                    bookmarkBtn.setImageResource(R.drawable.ic_star_clicked);
-                    Toast.makeText(getApplicationContext(),"북마크에 추가하였습니다.",Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    isBookmarked=false;
-                    bookmarkBtn.setImageResource(R.drawable.ic_star_unclicked);
-                    Toast.makeText(getApplicationContext(),"북마크를 취소하였습니다.",Toast.LENGTH_SHORT).show();
-                }
 
-            }
-        });
 
         callBtn.setOnClickListener(new View.OnClickListener(){
             @Override
