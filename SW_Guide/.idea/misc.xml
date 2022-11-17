@@ -14,12 +14,13 @@
         <entry key="app/src/main/res/drawable/ic_splash.xml" value="0.11" />
         <entry key="app/src/main/res/drawable/item_store_background.xml" value="0.1865" />
         <entry key="app/src/main/res/drawable/store_category_background.xml" value="0.1425" />
+        <entry key="app/src/main/res/font/font_res.xml" value="0.1875" />
         <entry key="app/src/main/res/layout/activity_detail_building.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/activity_detail_question.xml" value="0.12552083333333333" />
-        <entry key="app/src/main/res/layout/activity_detail_store.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_detail_store.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.23324275362318841" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23324275362318841" />
-        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.1296875" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1515625" />
         <entry key="app/src/main/res/layout/fragment_building.xml" value="0.23324275362318841" />
         <entry key="app/src/main/res/layout/fragment_drink.xml" value="0.165" />
