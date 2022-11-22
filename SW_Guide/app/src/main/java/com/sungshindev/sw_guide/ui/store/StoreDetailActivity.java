@@ -5,38 +5,35 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraPosition;
-import com.naver.maps.map.CameraUpdate;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
-import com.naver.maps.map.NaverMapOptions;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.overlay.Marker;
 import com.sungshindev.sw_guide.R;
-import com.sungshindev.sw_guide.data.Food;
+import com.sungshindev.sw_guide.data.Blog.BlogItems;
+import com.sungshindev.sw_guide.data.Blog.Blogs;
+import com.sungshindev.sw_guide.data.RetrofitBlog;
 import com.sungshindev.sw_guide.databinding.ActivityDetailStoreBinding;
-import com.sungshindev.sw_guide.databinding.ActivityMainBinding;
+import com.sungshindev.sw_guide.ui.home.HomeRVAdapter;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class StoreDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
     private ActivityDetailStoreBinding binding;
@@ -49,7 +46,11 @@ public class StoreDetailActivity extends AppCompatActivity implements OnMapReady
     String str_lon;
     double lat;
     double lon;
+    Call<Blogs> call;
 
+    private blogRVAdapter adapter;
+    ArrayList<BlogItems> dataInfo = new ArrayList<>();
+    RecyclerView rv;
     private DatabaseReference reference;
 
     @Override
@@ -97,6 +98,7 @@ public class StoreDetailActivity extends AppCompatActivity implements OnMapReady
                 startActivity(intent);
             }
         });
+
     }
 
 
@@ -118,6 +120,7 @@ public class StoreDetailActivity extends AppCompatActivity implements OnMapReady
 
                         title = String.valueOf(dataSnapshot.child("title").getValue());
                         binding.storeTitleTv.setText(title);
+                        getBlogs("성신여대 "+title);
                         category = String.valueOf(dataSnapshot.child("category").getValue());
                         binding.storeCategoryTv.setText(category);
                         time = String.valueOf(dataSnapshot.child("time").getValue()).replace("\\n", "\n");
@@ -161,4 +164,42 @@ public class StoreDetailActivity extends AppCompatActivity implements OnMapReady
         naverMap.setCameraPosition(cameraPosition);
 
     }
+
+    private void getBlogs(String keyword){
+        String clientId="yhRWnjEz9ka9WiMF49CZ";
+        String clientSecret="_rrSLc5KQL";
+        call = RetrofitBlog.getApiService().getBlogData(clientId,clientSecret,keyword);
+        call.enqueue(new Callback<Blogs>(){
+            @Override
+            public void onResponse(Call<Blogs> call, Response<Blogs> response) {
+                Blogs blogs = response.body();
+                Log.d("blog","호출성공");
+                dataInfo= blogs.getBlogItems();
+                setBlogAdapter();
+            }
+
+            @Override
+            public void onFailure(Call<Blogs> call, Throwable t) {
+                Log.d("blog",t.toString());
+            }
+        });
+    }
+
+
+    private void setBlogAdapter(){
+        rv = findViewById(R.id.detail_blog_rv);
+        Log.d("blog","setBlogAdapter 호출");
+        Log.d("blog",dataInfo.get(1).getTitle());
+        adapter = new blogRVAdapter(this,dataInfo);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setAdapter(adapter);
+        adapter.setOnItemClickListener(new blogRVAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClicked(int position) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(dataInfo.get(position).getLink()));
+                startActivity(intent);
+            }
+        });
+    }
+
 }
