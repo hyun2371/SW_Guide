@@ -7,8 +7,8 @@ public class Food {
     String image_path;
     String num;
     String recommend;
-    int lon;
-    int lat;
+    float lon;
+    float lat;
     int fid;
 
     public int getFid(){
