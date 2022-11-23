@@ -5,7 +5,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 
 import com.sungshindev.sw_guide.R;
@@ -14,6 +19,10 @@ import com.sungshindev.sw_guide.ui.building.BuildingFragment;
 import com.sungshindev.sw_guide.ui.home.HomeFragment;
 import com.sungshindev.sw_guide.ui.question.QuestionFragment;
 import com.sungshindev.sw_guide.ui.store.StoreFragment;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.Signature;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,4 +60,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.main_frame_layout,fragment);
         fragmentTransaction.commit();
     }
+
+
+
+
 }

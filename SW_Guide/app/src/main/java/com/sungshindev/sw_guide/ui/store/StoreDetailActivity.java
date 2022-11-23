@@ -42,6 +42,7 @@ public class StoreDetailActivity extends AppCompatActivity implements OnMapReady
     String time;
     String recommend;
     String category;
+    String address;
     String str_lat;
     String str_lon;
     double lat;
@@ -117,7 +118,8 @@ public class StoreDetailActivity extends AppCompatActivity implements OnMapReady
                         lon = Double.parseDouble(str_lon);
 
                         getMap();
-
+                        address = String.valueOf(dataSnapshot.child("address").getValue());
+                        binding.storeAddressTv.setText(address);
                         title = String.valueOf(dataSnapshot.child("title").getValue());
                         binding.storeTitleTv.setText(title);
                         getBlogs("성신여대 "+title);

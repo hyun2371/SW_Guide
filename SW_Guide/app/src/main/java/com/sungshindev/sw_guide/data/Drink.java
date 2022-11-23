@@ -11,6 +11,7 @@ public class Drink {
     String recommend;
     String time;
     String title;
+    String address;
 
     public int getDrink_id() {
         return drink_id;
@@ -23,6 +24,8 @@ public class Drink {
     public String getTime(){
         return time;
     }
+
+    public String getAddress(){return address;}
 
     public String getImage_path(){
         return image_path;
@@ -59,5 +62,6 @@ public class Drink {
         recommend = "default";
         num="default";
         category="default";
+        address="default";
     }
 }

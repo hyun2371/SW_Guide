@@ -7,6 +7,7 @@ public class Food {
     String image_path;
     String num;
     String recommend;
+    String address;
     float lon;
     float lat;
     int fid;
@@ -14,6 +15,8 @@ public class Food {
     public int getFid(){
         return fid;
     }
+
+    public String getAddress(){return address;}
 
     public String getNum(){return num;}
 
@@ -47,6 +50,7 @@ public class Food {
         image_path="default";
         num = "default";
         recommend="default";
+        address="default";
     }
 
     public Food(int fid, String title, String category, String time, String image_path, String num,String recommend){
