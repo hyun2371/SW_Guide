@@ -1,76 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="50dp"
     android:background="#FFFFFF"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/btn_GoBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00ff0000"
+        android:text="\u003C 이전으로"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/purple_200"
+        android:gravity="left"/>
+
     <TextView
         android:id="@+id/registerText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="30dp"
         android:gravity="center"
-        android:text="수정가이드 회원가입"
+        android:text="🚩  수정가이드 회원가입   "
         android:textColor="@color/purple_200"
-        android:textSize="20sp"
+        android:textSize="20dp"
+        android:singleLine="true"
         android:textStyle="bold"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="10">
-
-        <EditText
-            android:id="@+id/info_id"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="16dp"
-            android:hint="아이디를 입력하세요."
-
-            />
-
-    </LinearLayout>
 
     <EditText
-        android:id="@+id/info_password"
+        android:id="@+id/et_email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:hint="이메일을 입력하세요."
+        android:singleLine="true"
+        android:inputType="textEmailAddress" />
+
+
+    <EditText
+        android:id="@+id/et_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:inputType="textPassword"
+        android:hint="비밀번호를 입력하세요. (6~15자)"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:singleLine="true"
+        android:hint="이름을 입력하세요." />
+
+
+    <EditText
+        android:id="@+id/et_pnum"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="16dp"
-        android:hint="비밀번호를 입력하세요. (8~15자)" />
-
-    <EditText
-        android:id="@+id/info_email"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="16dp"
-        android:hint="이메일을 입력하세요."/>
-
-    <EditText
-        android:id="@+id/info_phone"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="16dp"
+        android:singleLine="true"
         android:hint="전화번호를 입력하세요." />
 
-    <EditText
-        android:id="@+id/info_nickname"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="16dp"
-        android:hint="사용하실 닉네임을 입력하세요." />
 
-    <LinearLayout
+    <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -83,26 +86,27 @@
             android:layout_margin="15dp"
             android:layout_marginBottom="16dp"
             android:layout_weight="5"
-            android:backgroundTint="@color/purple_500"
+            android:backgroundTint="@color/purple_200"
             android:gravity="center"
             android:text="가입하기"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_secondlogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:layout_weight="5"
-            android:backgroundTint="@color/purple_500"
+            android:backgroundTint="@color/purple_200"
             android:gravity="center"
             android:text="로그인"
             android:textStyle="bold" />
 
-    </LinearLayout>
+    </TableRow>
 
     <TextView
         android:id="@+id/textView_result"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
-</LinearLayout>
+
+</TableLayout>

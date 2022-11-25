@@ -20,9 +20,10 @@ public class BuildingRVAdapter extends RecyclerView.Adapter<BuildingRVAdapter.Vi
 
     ArrayList<Building> buildings;
     Context context;
+    private int b_id;
 
     public interface OnItemClickListener{
-        void onItemClicked(int position);
+        void onItemClicked(int position, int b_id);
     }
 
     private OnItemClickListener itemClickListener;
@@ -40,7 +41,8 @@ public class BuildingRVAdapter extends RecyclerView.Adapter<BuildingRVAdapter.Vi
             @Override
             public void onClick(View view){
                 int pos = viewHolder.getAdapterPosition();
-                itemClickListener.onItemClicked(pos);
+                b_id=buildings.get(pos).getBuilding_id();
+                itemClickListener.onItemClicked(pos,b_id);
             }
         });
 

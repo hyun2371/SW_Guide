@@ -1,6 +1,7 @@
 package com.sungshindev.sw_guide.ui.store;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,7 +63,7 @@ public class StoreDetailActivity extends AppCompatActivity implements OnMapReady
         super.onCreate(savedInstanceState);
         binding = ActivityDetailStoreBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Intent intent = getIntent();
         int id = intent.getIntExtra("id", 0);
         int kind = intent.getIntExtra("kind",0);

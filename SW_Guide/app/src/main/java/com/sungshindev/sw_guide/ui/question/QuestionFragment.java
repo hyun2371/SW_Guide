@@ -69,8 +69,10 @@ public class QuestionFragment extends Fragment {
 
         adapter.setOnItemClickListener(new QuestionRVAdapter.OnItemClickListener() {
             @Override
-            public void onItemClicked(int position) {
+            public void onItemClicked(int position,int qid) {
+                Log.d("question","itemClicked");
                 Intent intent = new Intent(getActivity(), QuestionDetailActivity.class);
+                intent.putExtra("qid",qid);
                 startActivity(intent);
             }
         });
@@ -80,3 +82,4 @@ public class QuestionFragment extends Fragment {
 
 
 }
+

@@ -37,7 +37,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/ic_store_call"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"/>
+        android:layout_marginEnd="30dp"/>
 
     <TextView
         android:id="@+id/store_title_tv"
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
                 android:textStyle="bold"
-                android:text="주소    "/>
+                android:text="주소 "/>
             <TextView
                 android:id="@+id/store_address_tv"
                 android:layout_width="wrap_content"
@@ -160,14 +160,25 @@
         </LinearLayout>
 
     </LinearLayout>
+    <TextView
+        android:id="@+id/store_blog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:text="블로그 후기"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear1"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/detail_blog_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         tools:listitem="@layout/item_search_blog"
-        app:layout_constraintTop_toBottomOf="@id/linear1"
+        app:layout_constraintTop_toBottomOf="@id/store_blog_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

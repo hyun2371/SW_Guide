@@ -1,44 +1,55 @@
 package com.sungshindev.sw_guide.ui.question;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.sungshindev.sw_guide.R;
+import com.sungshindev.sw_guide.data.Drink;
 import com.sungshindev.sw_guide.data.Question;
+import com.sungshindev.sw_guide.ui.store.FoodRVAdapter;
 
 import java.util.ArrayList;
 
-public class QuestionRVAdapter extends RecyclerView.Adapter<QuestionRVAdapter.ViewHolder>{
+public class QuestionRVAdapter extends RecyclerView.Adapter<QuestionRVAdapter.ViewHolder> {
 
     ArrayList<Question> questions;
     Context context;
+    private int qid;
 
     public interface OnItemClickListener{
-        void onItemClicked(int position);
+        void onItemClicked(int position,int qid);
     }
 
     private QuestionRVAdapter.OnItemClickListener itemClickListener;
 
-    public void setOnItemClickListener(QuestionRVAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener (QuestionRVAdapter.OnItemClickListener listener){
         itemClickListener = listener;
     }
-    @NonNull
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+    @Override
+    public QuestionRVAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_question, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
+                .inflate(R.layout.item_question,parent,false);
+
+        QuestionRVAdapter.ViewHolder viewHolder = new QuestionRVAdapter.ViewHolder(view);
 
         view.setOnClickListener(new View.OnClickListener(){
+
             @Override
             public void onClick(View view) {
                 int pos = viewHolder.getAdapterPosition();
-                itemClickListener.onItemClicked(pos);
+                qid=questions.get(pos).getQid();
+                itemClickListener.onItemClicked(pos,qid);
             }
         });
 
@@ -47,10 +58,9 @@ public class QuestionRVAdapter extends RecyclerView.Adapter<QuestionRVAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull QuestionRVAdapter.ViewHolder holder, int position) {
-        ViewHolder viewHolder = (QuestionRVAdapter.ViewHolder)holder;
+        QuestionRVAdapter.ViewHolder viewHolder = holder;
         int pos = holder.getAdapterPosition();
-        viewHolder.button.setText(questions.get(pos).getQ());
-
+        viewHolder.t.setText(questions.get(pos).getQ());
     }
 
     @Override
@@ -58,17 +68,16 @@ public class QuestionRVAdapter extends RecyclerView.Adapter<QuestionRVAdapter.Vi
         return questions.size();
     }
 
-    public QuestionRVAdapter(Context context, ArrayList<Question>questions) {
+    public QuestionRVAdapter(Context context, ArrayList<Question> questions){
         this.questions = questions;
         this.context = context;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        Button button;
-        public ViewHolder(View itemView){
+    public class ViewHolder extends RecyclerView.ViewHolder{
+        TextView t;
+        public ViewHolder(View itemView) {
             super(itemView);
-            button = itemView.findViewById(R.id.item_question_button);
+            t=itemView.findViewById(R.id.q_t);
         }
     }
-
 }

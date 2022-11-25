@@ -67,8 +67,9 @@ public class BuildingFragment extends Fragment {
 
         adapter.setOnItemClickListener(new BuildingRVAdapter.OnItemClickListener() {
             @Override
-            public void onItemClicked(int position) {
+            public void onItemClicked(int position,int b_id) {
                 Intent intent = new Intent(getActivity(), BuildingDetailActivity.class);
+                intent.putExtra("building_id",b_id);
                 startActivity(intent);
             }
         });
