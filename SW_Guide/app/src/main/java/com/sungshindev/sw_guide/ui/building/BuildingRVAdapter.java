@@ -54,7 +54,9 @@ public class BuildingRVAdapter extends RecyclerView.Adapter<BuildingRVAdapter.Vi
         ViewHolder viewHolder = (ViewHolder)holder;
         int pos = holder.getAdapterPosition();
         viewHolder.textView.setText(buildings.get(pos).getTitle());
-        Glide.with(holder.itemView).load(buildings.get(pos).getImage_path()).into(holder.imageView);
+        Glide.with(holder.itemView)
+                .load(buildings.get(pos).getImage_path())
+                .into(holder.imageView);
     }
 
 

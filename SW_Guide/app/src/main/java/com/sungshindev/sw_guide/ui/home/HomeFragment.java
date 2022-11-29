@@ -1,6 +1,9 @@
 package com.sungshindev.sw_guide.ui.home;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -46,6 +49,7 @@ public class HomeFragment extends Fragment {
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
         transaction.detach(this).attach(this).commit();
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -100,14 +104,16 @@ public class HomeFragment extends Fragment {
 
         adapter.setOnItemClickListener(new HomeRVAdapter.OnItemClickListener() {
             @Override
-            public void onItemClicked(int position) {
-
+            public void onItemClicked(int position, String url) {
+                Intent intent = new Intent (Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
             }
         });
 
         return rootView;
 
     }
+
 
     @Override
     public void onResume() {
@@ -129,5 +135,6 @@ public class HomeFragment extends Fragment {
             });
         }
     }
+
 
 }

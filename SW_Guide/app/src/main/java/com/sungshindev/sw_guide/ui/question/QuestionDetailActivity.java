@@ -65,8 +65,8 @@ public class QuestionDetailActivity extends AppCompatActivity {
                     if (task.getResult().exists()) {
                         DataSnapshot dataSnapshot = task.getResult();
                         image_path = String.valueOf(dataSnapshot.child("image_path").getValue());
-                        Glide.with(aimage).load(dataSnapshot.child("image_path").getValue()).into(aimage);
-                        a = String.valueOf(dataSnapshot.child("a").getValue());
+                        //Glide.with(aimage).load(dataSnapshot.child("image_path").getValue()).into(aimage);
+                        a = String.valueOf(dataSnapshot.child("a").getValue()).replace("\\n", "\n");
                         atext.setText(a);
 
                     }

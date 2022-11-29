@@ -1,6 +1,8 @@
 package com.sungshindev.sw_guide.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.sungshindev.sw_guide.R;
 import com.sungshindev.sw_guide.data.HomeTip;
 
@@ -23,7 +27,7 @@ public class HomeRVAdapter extends RecyclerView.Adapter<HomeRVAdapter.ViewHolder
     Context context;
 
     public interface OnItemClickListener{
-        void onItemClicked(int position);
+        void onItemClicked(int position,String url);
     }
 
     private HomeRVAdapter.OnItemClickListener itemClickListener;
@@ -41,7 +45,8 @@ public class HomeRVAdapter extends RecyclerView.Adapter<HomeRVAdapter.ViewHolder
             @Override
             public void onClick(View view){
                 int pos = viewHolder.getAdapterPosition();
-                itemClickListener.onItemClicked(pos);
+                String url = homeTips.get(pos).getClick_url();
+                itemClickListener.onItemClicked(pos,url);
             }
         });
 
@@ -53,7 +58,10 @@ public class HomeRVAdapter extends RecyclerView.Adapter<HomeRVAdapter.ViewHolder
         HomeRVAdapter.ViewHolder viewHolder = (HomeRVAdapter.ViewHolder)holder;
         int pos = holder.getAdapterPosition();
         viewHolder.textView.setText(homeTips.get(pos).getExplain());
-        Glide.with(holder.itemView).load(homeTips.get(pos).getImg_path()).into(holder.imageView);
+
+        Glide.with(holder.itemView).load(homeTips.get(pos).getImg_path())
+                .apply(RequestOptions.bitmapTransform(new RoundedCorners(14)))
+                .into(holder.imageView);
         Log.d("ddddd",homeTips.get(pos).getImg_path());
     }
 

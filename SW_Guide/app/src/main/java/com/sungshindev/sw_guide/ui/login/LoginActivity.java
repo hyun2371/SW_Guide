@@ -1,10 +1,12 @@
 package com.sungshindev.sw_guide.ui.login;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -20,8 +22,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.sungshindev.sw_guide.R;
 import com.sungshindev.sw_guide.ui.MainActivity;
 import com.sungshindev.sw_guide.ui.home.HomeFragment;
@@ -58,7 +64,10 @@ public class LoginActivity extends AppCompatActivity
 {
     private FirebaseAuth mFirebaseAuth;//파이어베이스 인증
     private DatabaseReference mDatabaseRef;              //실시간 데이터베이스
-    private EditText mEtEmail, mEtPwd;                     //로그인 입력필드
+    private EditText mEtEmail, mEtPwd;
+    private FirebaseDatabase database;//로그인 입력필드
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    DatabaseReference UserDatabaseRef = FirebaseDatabase.getInstance().getReference("SW_Guide");
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -84,18 +93,17 @@ public class LoginActivity extends AppCompatActivity
                 String strEmail = mEtEmail.getText().toString();
                 String strPwd = mEtPwd.getText().toString();
                 Log.d("login",mEtEmail.getText().toString());
-
-
-                if(!pattern.matcher(strEmail).matches()){
-                    Toast.makeText(LoginActivity.this, "이메일 형식을 확인해주세요",Toast.LENGTH_SHORT).show();
-                    return;
-                }
                 if (strEmail.equals("")){
-                    Toast.makeText(LoginActivity.this, "이메일을 입력해주세요",Toast.LENGTH_SHORT).show();
+                    showDialog("이메일을 입력해주세요.");
                     return;
                 }
+                if(!pattern.matcher(strEmail).matches()){
+                    showDialog("이메일 형식을 확인해주세요.");
+                    return;
+                }
+
                 if (strPwd.equals("")){
-                    Toast.makeText(LoginActivity.this, "비밀번호를 입력해주세요",Toast.LENGTH_SHORT).show();
+                    showDialog("비밀번호를 입력해주세요.");
                     return;
                 }
                 mFirebaseAuth.signInWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>()
@@ -104,6 +112,7 @@ public class LoginActivity extends AppCompatActivity
                     public void onComplete(@NonNull Task<AuthResult> task)
                     {
                         if(task.isSuccessful()){
+                            //saveNickname();
                             //로그인 성공
                             Intent i = new Intent(LoginActivity.this, MainActivity.class);
                             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -112,7 +121,7 @@ public class LoginActivity extends AppCompatActivity
                             Toast.makeText(LoginActivity.this, "로그인 완료",Toast.LENGTH_SHORT).show();
 
                         } else {
-                            Toast.makeText(LoginActivity.this, "아이디 또는 비밀번호의 입력이 잘못되었습니다",Toast.LENGTH_SHORT).show();
+                            showDialog("아이디 또는 비밀번호가 일치하지 않습니다");
                         }
                     }
                 });
@@ -145,4 +154,18 @@ public class LoginActivity extends AppCompatActivity
             }
         });
     }
+
+    private void showDialog(String message)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message);
+        builder.setPositiveButton("확인",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+        builder.show();
+    }
+
+
 }

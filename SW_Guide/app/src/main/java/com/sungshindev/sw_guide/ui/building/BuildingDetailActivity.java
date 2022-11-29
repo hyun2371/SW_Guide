@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -72,11 +74,13 @@ public class BuildingDetailActivity extends AppCompatActivity {
                 if (task.isSuccessful()){
                     if (task.getResult().exists()){
                         DataSnapshot dataSnapshot = task.getResult();
-                        detail =String.valueOf(dataSnapshot.child("explain").getValue());
+                        detail =String.valueOf(dataSnapshot.child("explain").getValue()).replace("\\n", "\n");
                         detailTv.setText(detail);
                         title =String.valueOf(dataSnapshot.child("title").getValue());
                         titleTv.setText(title);
-                        Glide.with(imageView).load(dataSnapshot.child("image_path").getValue()).into(imageView);
+                        Glide.with(imageView).load(dataSnapshot.child("image_path").getValue())
+                                .apply(RequestOptions.bitmapTransform(new RoundedCorners(14)))
+                                .into(imageView);
                     }
                     else{
                         Log.d("buildingDetail","building doesn't exist");

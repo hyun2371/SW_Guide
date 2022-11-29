@@ -2,8 +2,10 @@ package com.sungshindev.sw_guide.ui.login;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -39,17 +41,6 @@ public class SignUpActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        Button btn_secondlogin = (Button) findViewById(R.id.btn_secondlogin);
-        btn_secondlogin.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                //로그인 화면으로 이동
-                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
 
         Button btn_goback = (Button) findViewById(R.id.btn_GoBack);
         btn_goback.setOnClickListener(new View.OnClickListener()
@@ -57,9 +48,8 @@ public class SignUpActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                //로그인 화면으로 이동
-                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                startActivity(intent);
+                //로그인 화면으로 복귀
+                finish();
             }
         });
 
@@ -87,27 +77,29 @@ public class SignUpActivity extends AppCompatActivity
 
                 //입력없이 회원가입 버튼 누를 때 오류 잡은거
                 if (strEmail.isEmpty()){
-                    Toast.makeText(SignUpActivity.this, "이메일을 입력하세요.", Toast.LENGTH_SHORT).show();
+                    showDialog("이메일을 입력하세요.");
+                    mEtEmail.requestFocus();
+                    return;
+                } else if(!emailPattern.matcher(strEmail).matches()){
+                    showDialog("이메일 형식이 올바르지 않습니다.");
                     mEtEmail.requestFocus();
                     return;
                 } else if (strPwd.isEmpty()){
-                    Toast.makeText(SignUpActivity.this, "비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show();
+                    showDialog("비밀번호를 입력하세요.");
+                    mEtPwd.requestFocus();
+                    return;
+                } else if (strPwd.length() < 6 || strPwd.length() > 15){
+                    showDialog("비밀번호를 6자~15자 사이로 입력해주세요.");
                     mEtPwd.requestFocus();
                     return;
                 } else if (strName.isEmpty()){
-                    Toast.makeText(SignUpActivity.this, "이름을 입력하세요.", Toast.LENGTH_SHORT).show();
+                    showDialog("이름을 입력하세요.");
                     mEtName.requestFocus();
                     return;
                 }  else if (strPnum.isEmpty()){
-                    Toast.makeText(SignUpActivity.this, "전화번호를 입력하세요.", Toast.LENGTH_SHORT).show();
+                    showDialog("전화번호를 입력하세요.");
                     mEtPnum.requestFocus();
                     return;
-                } else { //이메일 형식 오류 잡은거
-                    if(!emailPattern.matcher(strEmail).matches()){
-                        Toast.makeText(SignUpActivity.this, "이메일 형식이 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
-                        mEtEmail.requestFocus();
-                        return;
-                    }
                 }
 
                 // Firebase Auth 진행
@@ -136,5 +128,17 @@ public class SignUpActivity extends AppCompatActivity
                 });
             }
         });
+    }
+
+    private void showDialog(String message)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message);
+        builder.setPositiveButton("확인",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+        builder.show();
     }
 }
