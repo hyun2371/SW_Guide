@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -156,6 +157,7 @@ public class StoreDetailActivity extends AppCompatActivity implements OnMapReady
         mapFragment.getMapAsync(this);
     }
 
+
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
         Log.d("store/map",Double.toString(lat));
@@ -167,6 +169,12 @@ public class StoreDetailActivity extends AppCompatActivity implements OnMapReady
         marker.setMap(naverMap);
         naverMap.setCameraPosition(cameraPosition);
 
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        binding.scrollview.requestDisallowInterceptTouchEvent(true);
+        return super.dispatchTouchEvent(ev);
     }
 
     private void getBlogs(String keyword){
