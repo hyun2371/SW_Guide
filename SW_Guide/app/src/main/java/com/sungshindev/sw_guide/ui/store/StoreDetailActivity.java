@@ -25,6 +25,7 @@ import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.overlay.Marker;
+import com.sungshindev.sw_guide.BuildConfig;
 import com.sungshindev.sw_guide.R;
 import com.sungshindev.sw_guide.data.Blog.BlogItems;
 import com.sungshindev.sw_guide.data.Blog.Blogs;
@@ -178,8 +179,8 @@ public class StoreDetailActivity extends AppCompatActivity implements OnMapReady
     }
 
     private void getBlogs(String keyword){
-        String clientId="yhRWnjEz9ka9WiMF49CZ";
-        String clientSecret="_rrSLc5KQL";
+        String clientId=BuildConfig.Blog_Client_ID;
+        String clientSecret= BuildConfig.Blog_Client_SECRET;
         call = RetrofitBlog.getApiService().getBlogData(clientId,clientSecret,keyword);
         call.enqueue(new Callback<Blogs>(){
             @Override
