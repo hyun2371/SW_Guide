@@ -37,6 +37,7 @@ public class HomeFragment extends Fragment {
     TextView nameID;
     TextView loginBtn;
     TextView homeTitle;
+    TextView feedbackBtn;
     private RecyclerView rv;
     private HomeRVAdapter adapter;
     ArrayList<HomeTip> homeTips = new ArrayList();
@@ -57,6 +58,7 @@ public class HomeFragment extends Fragment {
         nameID = rootView.findViewById(R.id.some_id);
         homeTitle = rootView.findViewById(R.id.home_tip_title);
         loginBtn = rootView.findViewById(R.id.home_login_btn);
+        feedbackBtn = rootView.findViewById(R.id.home_feedback_btn);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +73,14 @@ public class HomeFragment extends Fragment {
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(i);
                 }
+            }
+        });
+
+        feedbackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), FeedbackActivity.class);
+                startActivity(i);
             }
         });
 

@@ -33,6 +33,8 @@
             android:exported="true"/>
         <activity android:name=".ui.question.QuestionDetailActivity"
             android:exported="true"/>
+        <activity android:name=".ui.home.FeedbackActivity"
+            android:exported="true"/>
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="2v4p77mlq4" />
