@@ -2,7 +2,6 @@
 2022-2 mobile programming team project
 
 구글 플레이 스토어 링크 https://play.google.com/store/apps/details?id=com.sungshindev.sw_guide <br>
-시연 영상 https://drive.google.com/file/d/1ixSnYWqMtgr6KopGfYOFTm0lL8hsnNke/view?usp=sharing
 
 <img width="900" alt="image" src="https://user-images.githubusercontent.com/77109954/208381116-a6ae4852-8fd5-445d-bfca-218e03f23bd8.png">
 
